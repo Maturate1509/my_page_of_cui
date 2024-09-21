@@ -1,0 +1,130 @@
+* {
+    font-family: monospace,;
+    background-color: black;
+    font-size: 16px;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin:0px;
+}
+
+#cui-display {
+    padding: 10px 15px;
+}
+
+.top-text {
+    color:white;
+}
+
+.top-text a {
+    color:white;
+    float:right;
+    text-align: right;
+}
+
+#load-fig {
+    letter-spacing: 3px;
+}
+
+.root-user {
+    color:yellow;
+}
+
+.doller {
+    color:#e05a00;
+}
+
+#in-cmd {
+    color:white;
+}
+
+#-pwd- #right-border {
+    margin-left: 0px;
+    border-right: thin solid white;
+    animation-name:fadeOutAnime;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: step(1, end) ;
+}
+
+.error-message {
+    color:white;
+    white-space: pre-wrap;
+}
+
+.cmd {
+    white-space: pre-wrap;
+    letter-spacing: 1px;
+}
+
+.used-cmd {
+    color:white;
+}
+
+.adapt-dir {
+    letter-spacing: 2px;
+    color: #0dff46;
+}
+
+.pwd-text {
+    letter-spacing: 2px;
+    color: #0dff46;
+}
+
+.ls-text {
+    letter-spacing: 2px;
+    margin-right: 75px;
+}
+
+.ls-text-folder {
+    color: #0dff46;
+}
+
+.ls-text-file {
+    color: #0df7ff;
+}
+
+.history-list {
+    color:white;
+    list-style-type: none;
+    padding-left:48px;
+}
+
+.history-index {
+    margin-right:16px;
+    width:3em;
+    text-align:right;
+}
+
+.help-area {
+    color:white;
+}
+
+.help-header {
+    margin-bottom: 20px;
+}
+
+.help-list {
+    list-style-type: none;
+    padding-left:10px;
+}
+
+.help-line {
+    display: flex;
+}
+
+.help-format {
+    width: 200px;
+}
+
+.help-explain {
+    width: 280px;
+}
+
+@keyframes fadeOutAnime{
+    0% {
+        border-right: thin solid black;
+    }
+    100% {
+        border-right: thin solid white;       
+    }
+}

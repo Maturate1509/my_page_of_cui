@@ -1,0 +1,59 @@
+{
+    "name":"caloriemateliquid",
+    "type":"folder",
+    "children":[
+        {
+            "name" : "about",
+            "type" : "folder", 
+            "children": [
+                {
+                    "name" : "about.txt",
+                    "type" : "file",
+                    "file" : "about.txt"
+                },
+                {
+                    "name" : "test",
+                    "type" : "folder",
+                    "children" : []
+                }
+            ]
+        },
+        {
+            "name" : "attribute",
+            "type" : "folder",
+            "children" : [
+                {
+                    "name" : "article01.link",
+                    "type" : "link",
+                    "link" : "https://jp.techcrunch.com/sponsored/ryot_caloriemate-liquid/"
+                },
+                {
+                    "name" : "article02.link",
+                    "type" : "link",
+                    "link" : "#"
+                }
+            ]
+        },
+        {
+            "name" : "messages",
+            "type" : "folder", 
+            "children": [
+                {
+                    "name" : "readme.md",
+                    "type" : "file",
+                    "file" : "readme.txt"
+                }
+            ]
+        },
+        {
+            "name" : "product",
+            "type" : "folder",
+            "children" : [
+                {
+                    "name" : "feature01.png",
+                    "type" : "image"
+                }
+            ]
+        }
+    ]
+}
