@@ -1,4 +1,4 @@
-・これはカロリーメイトCUI(https://www.otsuka.co.jp/cmt/to_programmer/cui/)を再現しようと頑張ったもの
+・これはカロリーメイトCUI(https://www.otsuka.co.jp/cmt/to_programmer/cui/) を再現しようと頑張ったもの
 
 ・jsonの読み込みが上手くいかなかったので、コード内に直接書いてあります...
 ・できることは、コマンドがcd,pwd,history,ls 一般操作がバックスペースとエンターが可能になってます
