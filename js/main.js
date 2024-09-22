@@ -316,7 +316,8 @@ const pushedArrowR = ( direction ) => {
         set_cmd = used_cmd_cleaned_text[number_of_used_cmd - upArrow_count ];
     }
 
-    document.getElementById(ID_IN_CMD).textContent = set_cmd;
+    // document.getElementById(ID_IN_CMD).textContent = set_cmd;
+    hidden_input_element.value = set_cmd;
 
     // コマンド自体が変更となるため
     cursol_pos = 0;
@@ -329,16 +330,17 @@ const cmdProcess = (cmd_text) => {
         case /^cd/.test(cmd_text):
             changeDir(cmd_text);
             break;
-        case /^pwd/.test(cmd_text):
+        case /^pwd\s*$/.test(cmd_text):
             printWorkingDir(cmd_text);
             break;
-        case /^ls/.test(cmd_text):
+        case /^ls\s*$/.test(cmd_text):
+        // case /(^ls\s*$)|(^ls\s[a-z A-Z 0-9 \/]$)/.test(cmd_text):
             listSeg(cmd_text);
             break;
-        case /^history/.test(cmd_text):
+        case /^history\s*$/.test(cmd_text):
             printCmdHistory(cmd_text);
             break;
-        case /^help/.test(cmd_text):
+        case /^help\s*$/.test(cmd_text):
             printCmdList(cmd_text);
             break;
         default:
