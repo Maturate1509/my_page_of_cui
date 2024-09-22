@@ -13,10 +13,20 @@
 
 #input-area {
     color:white;
-    width:0;
-    position:fixed;
+    background-color: (0,0,0,1);
+    border:none;
+    outline: none;
+    letter-spacing: 1px;
+    font-family: monospace,;
+    width:1px;
+    padding:0;
+    /* position:fixed;
     top:0;
-    left: 110%;
+    right: 120%; */
+}
+
+#input-area :focus {
+    border:none;
 }
 
 .top-text {
@@ -46,12 +56,12 @@
 }
 
 #-pwd- #right-border {
-    margin-left: 0px;
+    /* margin-left: 0px;
     border-right: thin solid white;
     animation-name:fadeOutAnime;
     animation-duration: 1s;
     animation-iteration-count: infinite;
-    animation-timing-function: step(1, end) ;
+    animation-timing-function: step(1, end) ; */
 }
 
 .error-message {
@@ -128,11 +138,11 @@
     width: 280px;
 }
 
-@keyframes fadeOutAnime{
+/* @keyframes fadeOutAnime{
     0% {
         border-right: thin solid black;
     }
     100% {
         border-right: thin solid white;       
     }
-}
+} */
