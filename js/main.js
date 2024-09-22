@@ -114,6 +114,7 @@ newContent.id = ID_PWD;
 newContent.innerHTML = [root_user_html, doller_mark, text_inner, right_border].join(" ");
 const hidden_input_element = document.createElement('input');
 hidden_input_element.id = "input-area" ;
+hidden_input_element.autocapitalize = "off";
 const nextLine = document.createElement("br"); //改行
 
 //figの変更
