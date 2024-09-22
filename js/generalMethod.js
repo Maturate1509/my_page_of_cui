@@ -31,23 +31,22 @@ const GetElementListIncludes = (tree,list) => {
 }
 
 // 文字列のwidthの計測を行う
-const measureTextWidth = (text, font) => {
-    const span = document.createElement("span");
-    span.style.visibility = "hidden";
-    span.style.whiteSpace = "pre-wrap";
-    span.style.padding = 0;
-    span.style.margin = 0;
-    span.style.border = 0;
-    span.style.color = "white";
-    span.style.letterSpacing = "1px";
+const measureTextWidth = (text, font, letterSpacing="1px") => {
+    const tmp_span = document.createElement("span");
+    tmp_span.style.visibility = "hidden";
+    tmp_span.style.whiteSpace = "pre-wrap";
+    tmp_span.style.padding = 0;
+    tmp_span.style.margin = 0;
+    tmp_span.style.border = 0;
+    tmp_span.style.color = "white";
+    tmp_span.style.letterSpacing = letterSpacing;
 
-    span.style.font = font;
-    span.textContent = text;
-
-    document.body.appendChild(span);
-    const width = span.getBoundingClientRect().width;
+    tmp_span.style.font = font;
+    tmp_span.textContent = text;
+    document.body.appendChild(tmp_span);
+    const width = tmp_span.getBoundingClientRect().width;
     
-    document.body.removeChild(span);
+    document.body.removeChild(tmp_span);
 
     return width;
 }

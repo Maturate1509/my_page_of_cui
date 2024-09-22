@@ -112,6 +112,8 @@ const newContent = document.createElement('span');
 newContent.id = ID_PWD;
 // newContent.innerHTML = "<span class='root-user'>caloriemateliquid</span> <span class='doller'>$</span> <span id='in-cmd'></span>";
 newContent.innerHTML = [root_user_html, doller_mark, text_inner, right_border].join(" ");
+const hidden_input_element = document.createElement('input');
+hidden_input_element.id = "input-area" ;
 const nextLine = document.createElement("br"); //改行
 
 //figの変更
@@ -134,6 +136,7 @@ const intervalid = setInterval(() => {
         clearInterval(intervalid);
         load_text.textContent = "LOADED";
         cui_display.appendChild(newContent.cloneNode(true));
+        document.getElementById(ID_IN_CMD).appendChild(hidden_input_element);
     }
 }, 50);
 
@@ -196,7 +199,8 @@ const pushedSpecialKey = (specialKey) => {
 
 //tabの時の処理
 const pushedTab = () => {
-    let in_cmd_text = document.getElementById(ID_IN_CMD).textContent;
+    // let in_cmd_text = document.getElementById(ID_IN_CMD).textContent;
+    let in_cmd_text = hidden_input_element.value;
     let in_cmds = in_cmd_text.split(" ");
     let dir_cmd_index = 1; // オプションが付くようになったときのために
     // if( in_cmds.length < 2 || in_cmds[dir_cmd_index] == "" ) {
@@ -229,27 +233,36 @@ const pushedTab = () => {
         // 候補に置き換える
         paths[paths.length-1] = filtered_now_ls[0].name;
         in_cmds[dir_cmd_index] = paths.join("/");
-        document.getElementById(ID_IN_CMD).textContent = in_cmds.join(" ");
+        const join_contents = in_cmds.join(" ");
+        // document.getElementById(ID_IN_CMD).textContent = join_contents;
+        hidden_input_element.value = join_contents;
     }
     // 複数候補
     else {
         //前の状態をコピー
-        let pwd_element = document.getElementById(ID_PWD).cloneNode(true);
+        const pwd_element = document.getElementById(ID_PWD).cloneNode(true);
         // いつもの
         fixedPhrase();
+        clear_cmd_text(pwd_element);
+
+        // コマンドは残しておく
+        hidden_input_element.value = in_cmd_text;
 
         cui_display.appendChild(nextLine.cloneNode(true));
         out_ls_result(filtered_now_ls);
         cui_display.appendChild(nextLine.cloneNode(true));
-        cui_display.appendChild(pwd_element);    
+        cui_display.appendChild(pwd_element);
+        document.getElementById(ID_IN_CMD).appendChild(hidden_input_element);
     }
     
 };
 
 //enterの時の処理
 const pushedEnter = () => {
-    let cmd_element = document.getElementById(ID_IN_CMD);
-    cmdProcess(cmd_element.textContent);
+    // let cmd_element = document.getElementById(ID_IN_CMD);
+    // cmdProcess(cmd_element.textContent);
+    let cmd_element = document.getElementById("input-area");
+    cmdProcess(cmd_element.value);
     cursol_pos = 0;
     upArrow_count = 0;
 };
@@ -283,7 +296,7 @@ const pushedArrowM = ( direction ) => {
     cursol_pos = next_cursol_pos;
 
     // カーソルの位置が変更になるため
-    rightBorderReset();
+    // rightBorderReset();
 }
 
 
@@ -306,7 +319,7 @@ const pushedArrowR = ( direction ) => {
 
     // コマンド自体が変更となるため
     cursol_pos = 0;
-    rightBorderReset();
+    // rightBorderReset();
 }
 
 //コマンド処理
@@ -339,13 +352,15 @@ const fixedPhrase = () => {
     let cmd_element = document.getElementById(ID_IN_CMD);
     let pwd_element = document.getElementById(ID_PWD);
     let right_border_element = document.getElementById(ID_RIGHT_BORDER);
+    let old_input_area = document.getElementById('input-area');
+    cmd_element.removeChild(old_input_area);
     cmd_element.classList.add(CLASS_USED_CMD);
     cmd_element.removeAttribute('id');
     pwd_element.removeAttribute('id');
     right_border_element.removeAttribute('id');
 
-    const input_element = document.getElementById("input-area");
-    input_element.value = "";
+    cmd_element.textContent = old_input_area.value;
+    hidden_input_element.value = "";
 };
 
 // borderのリセット
@@ -373,6 +388,8 @@ const endPhase = () => {
     const element = document.documentElement;
     const bottom = element.scrollHeight - element.clientHeight;
     window.scroll(0, bottom);
+
+    document.getElementById("input-area").focus();
 }
 
 //cdコマンド
@@ -419,13 +436,13 @@ const changeDir = (cmd_text) => {
 
     cui_display.appendChild(nextLine.cloneNode(true));
     cui_display.appendChild(changedContent);
+    document.getElementById(ID_IN_CMD).appendChild(hidden_input_element);
 };
 
 //pwdコマンド
 const printWorkingDir = (cmd_text) => {
     //前の状態の保存
     const pwd_element = document.getElementById(ID_PWD).cloneNode(true);
-
     //いつもの
     fixedPhrase();
     clear_cmd_text(pwd_element);
@@ -439,6 +456,7 @@ const printWorkingDir = (cmd_text) => {
     cui_display.appendChild(pwd_print_element);
     cui_display.appendChild(nextLine.cloneNode(true));
     cui_display.appendChild(pwd_element);
+    document.getElementById(ID_IN_CMD).appendChild(hidden_input_element);
 };
 
 //lsコマンド
@@ -461,6 +479,7 @@ const listSeg = (cmd_text) => {
         cui_display.appendChild(nextLine.cloneNode(true));
     }
     cui_display.appendChild(pwd_element);
+    document.getElementById(ID_IN_CMD).appendChild(hidden_input_element);
 };
 
 //historyコマンド
@@ -501,6 +520,7 @@ const printCmdHistory = (cmd_text) => {
     cui_display.appendChild(nextLine.cloneNode(true));
     cui_display.appendChild(used_cmds_list_element);
     cui_display.appendChild(pwd_element);
+    document.getElementById(ID_IN_CMD).appendChild(hidden_input_element);
 };
 
 // 使用可能のcmd を表示する
@@ -554,7 +574,8 @@ const printCmdList = (cmd_text) => {
     cui_display.appendChild(nextLine.cloneNode(true));
     cui_display.appendChild(help_cmds_area_element);
     cui_display.appendChild(pwd_element);
-}
+    document.getElementById(ID_IN_CMD).appendChild(hidden_input_element);
+};
 
 //not found処理
 const not_found_proc = (cmd_text) => {
@@ -570,6 +591,7 @@ const not_found_proc = (cmd_text) => {
     //コピーしないで追加していくと変更後の値になる
     cui_display.appendChild(nextLine.cloneNode(true));
     cui_display.appendChild(pwd_element.cloneNode(true));
+    document.getElementById(ID_IN_CMD).appendChild(hidden_input_element);
 };
 
 // Usage出力
@@ -619,7 +641,7 @@ const out_ls_result = ( objects_list ) => {
     }
 }
 
-// 設定されているコマンド部分だけ消す
+// 設定されているコマンド部分+コピーされたinputを消す
 const clear_cmd_text = (pwd_element) => {
     let cmd_classes_element = pwd_element.getElementsByClassName(CLASS_CMD);
     let cmd_class_element = cmd_classes_element[cmd_classes_element.length -1];
@@ -631,7 +653,7 @@ document.onkeydown = function(ev) {
     let input_key = ev.key;
     //特殊キーの処理
     if (input_key.length >= 2 ) {
-        if(ev.key == "Tab") {
+        if(ev.key === "Tab" ) {
             // これをしないとフォーカスがデフォルトの挙動(勝手に移動)する
             ev.preventDefault();
         }
@@ -639,21 +661,29 @@ document.onkeydown = function(ev) {
     }
     //一般的なキー
     else {
-        newInputCmd(input_key);
+        // newInputCmd(input_key);
     }
-    rightBorderReset();
+    // rightBorderReset();
     endPhase();
 };
 
 //html読み込み後の処理
 window.addEventListener("load",function() {
     intervalid;
-    const input_element = document.createElement('input');
-    input_element.id = "input-area" ;
-    document.body.appendChild(input_element);
+    
 });
 
-cui_display.onclick = function() {
-    const input_element = document.getElementById("input-area");
-    input_element.focus();
+cui_display.onclick = function() {;
+    document.getElementById("input-area").focus();
 };
+
+hidden_input_element.addEventListener("keydown", (e) => {
+    // if ( e.key.includes("ArrowUp", "ArrowDown") == true ) {
+    if ( ["ArrowUp", "ArrowDown"].includes(e.key) == true ) {
+        e.preventDefault();
+    }
+});
+
+hidden_input_element.addEventListener("keyup", (e) => {
+    hidden_input_element.style.width = measureTextWidth( hidden_input_element.value,hidden_input_element.style.font ) + "px";
+});
