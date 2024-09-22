@@ -343,6 +343,9 @@ const fixedPhrase = () => {
     cmd_element.removeAttribute('id');
     pwd_element.removeAttribute('id');
     right_border_element.removeAttribute('id');
+
+    const input_element = document.getElementById("input-area");
+    input_element.value = "";
 };
 
 // borderのリセット
@@ -355,6 +358,7 @@ const rightBorderReset = () => {
     let left_margin = DEFAULT_RIGHT_BORDER_MARGIN_LEFT;
     // postion調整
     if( cursol_pos != 0 ) {
+        // 後ろからの長さ分カーソルを移動させる
         const cmd_of_SelectedtoEnd = now_all_cmd_text.slice( all_cmd_length+cursol_pos, all_cmd_length );
         const font = document.getElementById(ID_IN_CMD).style.font;
         const cmd_width_SelectedtoEnd = measureTextWidth(cmd_of_SelectedtoEnd, font);
@@ -644,4 +648,12 @@ document.onkeydown = function(ev) {
 //html読み込み後の処理
 window.addEventListener("load",function() {
     intervalid;
+    const input_element = document.createElement('input');
+    input_element.id = "input-area" ;
+    document.body.appendChild(input_element);
 });
+
+cui_display.onclick = function() {
+    const input_element = document.getElementById("input-area");
+    input_element.focus();
+};

@@ -11,6 +11,12 @@
     padding: 10px 15px;
 }
 
+#input-area {
+    color:white;
+    width:0;
+    visibility: hidden;
+}
+
 .top-text {
     color:white;
 }
