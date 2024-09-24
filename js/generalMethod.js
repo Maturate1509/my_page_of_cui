@@ -75,9 +75,9 @@ const cleanPath = ( paths ) => {
             if( paths.length >= 2 && i == 0 ) {
                 result.push("/");
             }
-            // 空白のみの場合 「..」と同じ処理
+            // 空白のみの場合 本来はHOMEだがいったんルートと同じ処理
             else if( paths.length == 1 ) {
-                result.push("..");
+                result.push("/");
             }
             else {
                 result.push("");

@@ -61,3 +61,6 @@ const NOT_FOUND_COMMAND_MESSAGE = ": Command  not  found.  Use  'help'  to  see 
 const NO_SUCH_FILE_DIR_MESSAGE = ": No  such  file  or  directory";
 const NOT_A_DIRECTORY_MESSAGE = ": Not  a  directory";
 const BASIC_HELP_MESSAGE_HEADER = "My Page of  CUI";
+
+// env
+const HOME = "";
