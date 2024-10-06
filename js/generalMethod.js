@@ -67,7 +67,6 @@ const getTextOfHTMLCollection = ( list, needEmpty = false ) => {
 const cleanPath = ( paths ) => {
     let result = [];
     const lost_space_frontBack_paths = paths.map( path => path.replace(/^\s* | \s*$/g, "") );
-    
     for( var i in lost_space_frontBack_paths ) {
 
         if( lost_space_frontBack_paths[i] == "" ) {
@@ -85,6 +84,12 @@ const cleanPath = ( paths ) => {
             continue;
         }
 
+        // ./の場合
+        if( lost_space_frontBack_paths[i] == "." ) {
+            result.push("");
+            continue;
+        }
+        
         result.push( lost_space_frontBack_paths[i] );
     }
 
